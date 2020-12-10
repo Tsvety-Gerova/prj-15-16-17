@@ -3,8 +3,8 @@ package zadacha1;
 public class TestTime {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		
 		Time t1 = new Time();
 		Time t2 = new Time(555550000);
 		Time t3 = new Time(5, 23, 55);

@@ -6,7 +6,9 @@ public class Time {
 	 private long minutes;
 	 private long seconds;
 	 
-	 public Time () { }
+	 public Time () { 
+		 setTime(System.currentTimeMillis());
+	 }
 	  
 	 public Time (long miliseconds) {
 		 this.seconds = ((miliseconds / 1000) % 60);
@@ -15,14 +17,9 @@ public class Time {
 	 }
 	 
 	 public Time(int hours, int minutes, int seconds){
-		 this.hours = hours;
-		 this.seconds = seconds; 
-		 this.minutes = minutes;
-	 }
-	 public void setTime(long elapseTime) {
-		 this.seconds = ((elapseTime / 1000) % 60);
-		 this.minutes = ((elapseTime / (1000 * 60)) % 60);
-		 this.hours = ((elapseTime / (1000 * 60 * 60)) % 24) + 2;
+		 setHours(hours);
+		 setMinutes(minutes);
+		 setSeconds(seconds);
 	 }
 	
 	 
@@ -35,7 +32,27 @@ public class Time {
 	 public long getSeconds() {
 		return seconds;
 	 }
+
+	private void setHours(long hours) {
+		this.hours = hours;
+	}
+
+	private void setMinutes(long minutes) {
+		this.minutes = minutes;
+	}
+
+	private void setSeconds(long seconds) {
+		this.seconds = seconds;
+	}
 	 
+	public void setTime (long milliseconds) {
+		long millisecondsToday = milliseconds % (1000L * 60 * 24);
+		this.hours = (int)(millisecondsToday / ( 1000 * 60 * 60));
+		this.minutes = (int)(millisecondsToday % ( 1000 * 60 * 60)) / ( 1000 * 60);
+		this.seconds = (int)(millisecondsToday % ( 1000 * 60 * 60)) % ( 1000 * 60) / 1000;
+		
+	}
 	 
+	
 
 }

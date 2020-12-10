@@ -3,63 +3,100 @@ package zadacha2;
 
 public class MyInteger {
 
-   public static int value = 41;
-	 
-	MyInteger() {}
+   private int value;
 	
-	public int getValue() {
+   
+   public int getValue() {
 		return value;
 	}
-	
-	public boolean isEven(int value) {
-		this.value = value; 
-		boolean isEven = false;
-		if(value/2 == 0) {
-			isEven = true;
-		}
-		return isEven;
-	}
-	
-	public boolean isOdd(int value) {
-		this.value = value; 
-		boolean isOdd = false;
-		if(value/2 != 0) {
-			isOdd = true;
-		}
-		return isOdd;
-	}
-	
-	public boolean isPrime (int value) {
+
+	public MyInteger(int value) {
 		this.value = value;
-		boolean isPrime = false;
-		int maxDivider = (int)Math.sqrt(value);
-		  for (int i = 2; i <= maxDivider; i++ ){
-		    if( value % i == 0){
-		       isPrime = false;		   
-		      }		      
-		  	}
-		return isPrime;
 	}
 	
-	public boolean equals(int value) {
-		boolean equals = false;
-		if (MyInteger.value == value) {
-			equals = true;
+	
+	
+    public boolean isOdd() {
+		//return this.value % 2 != 0;
+    	return MyInteger.isOdd(this.value);
+	}
+
+	public boolean isEven() {
+    	return MyInteger.isOdd(this.value);
+	}
+	
+	public boolean isPrime () {
+		return MyInteger.isPrime(this.value);
+	}
+	
+	 
+	
+	
+	
+	public static boolean isOdd(int value) {
+			return value % 2 != 0;
 		}
-		return equals;
-	}
-	
-	
-	public static int parseInt(char[] numArr) {
-		String arr = new String(numArr);
-		int number = Integer.parseInt(arr);
-		return number;
+
+		public static boolean isEven(int value) {
+			return ! MyInteger.isOdd(value);
+		}
 		
-	}
- 
-	public static int parseInt(String numArr) {
-		int i = Integer.parseInt(numArr);
-        return i;
-	}	
+		public static boolean isPrime (int value) {
+			boolean isPrime = false;
+			int maxDivider = (int)Math.sqrt(value);
+			  for (int i = 2; i <= maxDivider; i++ ){
+			    if(value % i == 0){
+			        return false;		   
+			      }		      
+			  	}
+			return true;
+		}
+		
+		
+		
+		
+		
+		
+		public static boolean isOdd(MyInteger value) {
+				//return value.getValue() % 2 != 0;
+			 return MyInteger.isOdd(value.getValue());
+			 }
+
+			public static boolean isEven(MyInteger value) {
+				//return ! MyInteger.isOdd(value);
+				return MyInteger.isEven(value.getValue());
+			}
+			
+			public static boolean isPrime (MyInteger value) {
+//				boolean isPrime = false;
+//				int maxDivider = (int)Math.sqrt(value.getValue());
+//				  for (int i = 2; i <= maxDivider; i++ ){
+//				    if(value.getValue() % i == 0){
+//				        return false;		   
+//				      }		      
+//				  	}
+//				return true;
+				
+				return MyInteger.isPrime(value.getValue());
+			}
+			
+			
+			static int parseInt (char[] array) {
+				return MyInteger.parseInt(new String(array));
+			}
+			
+			static int parseInt (String array) {
+				return Integer.parseInt(array);
+			}
 	
+			
+			public boolean equals (int value) {
+				return this.value == value;
+			}
+			
+			public boolean equals (MyInteger value) {
+				return this.value == value.getValue();
+			}
+			
+			
 }
